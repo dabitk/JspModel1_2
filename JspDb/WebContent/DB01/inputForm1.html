@@ -1,0 +1,71 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<html>
+	<HEAD>
+	<STYLE>
+		body{
+		    text-align: center;
+		}
+		div{
+			display: inline-block;
+		}		
+		td{
+			text-align:center;
+		}
+		input[type="number"],input[type="text"]{
+    		-webkit-box-sizing: border-box;
+       		-moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width:175px;
+		}	
+	</STYLE>
+	<SCRIPT>
+		function onlyNumber(){	//숫자만 입력 받게하는 함수
+			if(((event.keyCode<48)||(event.keyCode>57))&&event.keyCode!=13){
+				alert('숫자만 입력할 수 있습니다.');				
+				event.returnValue=false;
+			}
+
+		}
+		
+		function onlyEngKor(){
+			if((/^[a-zA-Z가-힣\s]*$/).test(String.fromCharCode(event.keyCode | event.which))){
+				event.returnValue=true;
+			}else{
+				alert('한글과 영어만 입력할 수 있습니다.');
+				event.returnValue=false;
+			}
+		}
+		
+
+
+	</SCRIPT>	
+	</HEAD>
+	<BODY>
+
+	<h1 align=center>성적입력추가</h1>
+	<div>
+	<form method="post" style="width:400px;" action="insertDB.jsp">
+	<input type="submit"  style="float:right;margin-right:60px;margin-bottom:10px;" value="추가">
+	<TABLE cellspacing=1 width=400px border=1>
+	<TR>
+		<TD>이름</TD><TD><input type="text" onkeypress="onlyEngKor();" maxlength="5" name="name"  required></TD>
+	</TR>
+	<TR>
+		<TD>학번</TD><TD>자동부여</TD>
+	</TR>
+	<TR>
+		<TD>국어</TD><TD><input type="number"  min="0" max="100" name="kor" autocomplete=off required></TD>
+	</TR>
+	<TR>
+		<TD>영어</TD><TD><input type="number"  min="0" max="100"name="eng" autocomplete=off required></TD>
+	</TR>
+	<TR>
+		<TD>수학</TD><TD><input type="number"  min="0" max="100"name="mat" autocomplete=off required></TD>
+	</TR>	
+	</TABLE>
+	</form>
+	</div>
+	</BODY>
+</html>
+
